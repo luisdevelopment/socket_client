@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <script type = "text/javascript">
+   function WebSocketTest() 
+   {
+	   if ("WebSocket" in window)
+	   {
+			console.log("WebSocket is supported by your Browser!");		       
+		    
+			// Let us open a web socket
+		    let DEVELOPMENT_ENDPOINT = "ws://localhost:5353/ws";
+			let POC_ENDPOINT = "ws://5.183:11:4/ws";
+		    var ws = new WebSocket(POC_ENDPOINT);
+					
+		    ws.onopen = function() 
+			{// Web Socket is connected, send data using send()
+				ws.send("Deus seja louvado");
+				console.log("Message is sent...");
+		    };
+					
+		    ws.onmessage = function (evt) 
+			{ 
+				var received_msg = evt.data;
+				console.log("Message is received...");
+				console.log(received_msg)
+		    };
+					
+		    ws.onclose = function() 
+			{// websocket is closed.
+				console.log("Connection is closed..."); 
+			};
+		} 
+		else 
+		{// The browser doesn't support WebSocket
+			console.log("WebSocket NOT supported by your Browser!");
+		}
+	}
+
+	</script>
+    <title>Document</title>
+</head>
+<body>
+      <div id = "sse">
+         <a href = "javascript:WebSocketTest()">Run WebSocket</a>
+      </div>
+      <input type="text" id="jsonText" name="jsonTextName">
+      <input type="button" id="jsonButton" name="jsonButton" value="enviar">
+     <div id="response">
+      </div>
+</body>
+<script type = "text/javascript">
+
+	const LOCAL_ENDPOINT = "ws://localhost:5000/ws";
+	const REMOTE_ENDPOINT = "ws://5.183.11.4:83/ws";
+
+//	let data = document.querySelector("#jsonText").value;
+	let button = document.querySelector("#jsonButton");
+	let response = document.querySelector("#response");	
+	let sendData = () => 
+	{
+		let ws = new WebSocket(REMOTE_ENDPOINT);
+		let data = document.querySelector("#jsonText").value;
+
+		ws.onopen = function() 
+		{// Web Socket is connected, send data using send()
+			ws.send(data);
+			console.log("Message is sent... ="+data);
+		};
+					
+		ws.onmessage = function (evt) 
+		{ 
+			var received_msg = evt.data;
+			console.log("Message is received...");
+			response.append(received_msg);
+			console.log(received_msg)
+		};
+		
+		ws.onclose = function() 
+		{// websocket is closed.
+			console.log("Connection is closed..."); 
+		};
+	
+	}
+	
+	button.addEventListener("click", sendData);
+
+	 	
+
+</script>
+</html>
