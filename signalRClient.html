@@ -3,138 +3,307 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css.map">
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css.map">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css.map">
     <title>Document</title>
 </head>
 <body>
 
-<div class="container">
-
-    <div class="row">&nbsp;</div>
-
-    <div class="row">
-
-        <div class="col-2">User</div>
-
-        <div class="col-4"><input type="text" id="userInput" /></div>
-
-    </div>
-
-    <div class="row">
-
-        <div class="col-2">Message</div>
-
-        <div class="col-4"><input type="text" id="messageInput" /></div>
-
-    </div>
-
-    <div class="row">&nbsp;</div>
-
-    <div class="row">
-
-        <div class="col-6">
-
-            <input type="button" id="sendButton" value="Send Message" />
-
+<div class="container-fluid">
+    <div class="container mx-auto">
+        <div class="row">
+            <div class="card col-md-3 text-center" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Todos</h5>
+                  <p id="menssagens1" class="card-text border">Dados: </p>
+                  <input type="button" class="btn btn-primary" value="send">
+                </div>
+              </div>
+              <div class="card col-md-3 text-center" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Grupo A</h5>
+                  <p id="menssagens2" class="card-text border">Dados: </p>
+                  <input type="button" class="btn btn-primary" value="send">
+                </div>
+              </div>
+              <div class="card col-md-3 text-center" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Grupo B</h5>
+                  <p id="menssagens3" class="card-text border">Dados: </p>
+                  <input type="button" class="btn btn-primary" value="send">
+                </div>
+              </div>
+              <div class="card col-md-3 text-center" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Grupo C</h5>
+                  <p id="menssagens4" class="card-text border">Dados: </p>
+                  <input type="button" class="btn btn-primary" value="send">
+                </div>
+              </div>
         </div>
-
+        <div class="row">
+            <div class="card col-md-3 text-center" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Thiago</h5>
+                  <p id="menssagens5" class="card-text border">Dados: </p>
+                  <input type="button" class="btn btn-primary" value="send">
+                </div>
+              </div>
+              <div class="card col-md-3 text-center" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Luis</h5>
+                  <p id="menssagens6" class="card-text border">Dados: </p>
+                  <input type="button" class="btn btn-primary" value="send">
+                </div>
+              </div>
+              <div class="card col-md-3 text-center" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Wesley</h5>
+                  <p id="menssagens7" class="card-text border">Dados: </p>
+                  <input type="button" class="btn btn-primary" value="send">
+                </div>
+              </div>
+              <div class="card col-md-3 text-center" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Roberto</h5>
+                  <p id="menssagens8" class="card-text border">Dados: </p>
+                  <input type="button" class="btn btn-primary" value="send">
+                </div>
+              </div>
+        </div>
     </div>
-
-</div>
-
-<div class="row">
-
-    <div class="col-12">
-
-        <hr />
-
-    </div>
-
-</div>
-
-<div class="row">
-
-    <div class="col-6">
-
-        <ul id="messagesList"></ul>
-
-    </div>
-
 </div>
 
 </body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="js/bootstrap.bundle.min.js" ></script>
+<!--<script src="js/bootstrap.bundle.min.js.map" ></script>-->
+<script src="js/bootstrap.min.js" ></script>
+<!--<script src="js/bootstrap.min.js.map" ></script>-->
 <script src="signalr.min.js"></script>
 <script type = "text/javascript">
+
 
 "use strict";
 
 const BASE_URL_QA = 'http://5.183.11.4:82';
 const BASE_URL_PRODUCTION = 'http://5.183.11.4:81';
 const BASE_URL_LOCAL = 'http://localhost:5000';
+const BASE_URL_WESLEY = 'http://192.168.1.8:8080';
 const ENDPOINT_NOTIFICATION = '/notificationHub';
 const ENDPOINT_STATUS = '/statusHub';
+const ENDPOINT_REALTIME = '/realTimeHub';
 
-console.log(BASE_URL_QA+ENDPOINT_NOTIFICATION);
+const CONNECTED_URL = BASE_URL_LOCAL+ENDPOINT_REALTIME;
 
-var connection = new signalR.HubConnectionBuilder()
- .withUrl(BASE_URL_QA+ENDPOINT_STATUS, {
+
+console.log(CONNECTED_URL);
+
+
+
+
+var connectionAll = new signalR.HubConnectionBuilder()
+ .withUrl(CONNECTED_URL, {
+  skipNegotiation : true,
+  withCredentials : false,
+  transport : signalR.HttpTransportType.WebSockets
+}).build();
+
+connectionAll.start().then(async function () {
+
+}).catch(function (e) {
+    console.log(e.toString());
+})
+
+// async function AddToGroup(grupo) {
+//     setTimeout(function () { }, 1500);
+//     try {
+//         //let nomeGrupo = `COTACAO_${containerTransportadoraId}_${cotacaoId}`;
+//         await connectionAll.invoke("AddToGroup", grupo);
+//     }
+//     catch (e) {
+//         console.log(e.toString());
+//     }
+// }
+
+connectionAll.on("SendAll", function (message) {
+	var user = "teste";
+    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    var encodedMsg = user + " says " + msg;
+    var li = document.createElement("li");
+    li.textContent = encodedMsg;
+    document.getElementById("menssagens1").appendChild(li);
+
+});
+
+connectionAll.on("SendGroup", function (message) {
+	// var user = group;
+    var user = "teste";
+    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    var encodedMsg = user + " says " + msg;
+    var li = document.createElement("li");
+    li.textContent = encodedMsg;
+    document.getElementById("menssagens1").appendChild(li);
+
+});
+
+connectionAll.on("SendUser", function (user, message) {
+	// var user = "teste";
+    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    var encodedMsg = user + " says " + msg;
+    var li = document.createElement("li");
+    li.textContent = encodedMsg;
+    document.getElementById("menssagens1").appendChild(li);
+
+});
+
+
+
+
+///Conections to Group A
+
+var connectionA = new signalR.HubConnectionBuilder()
+ .withUrl(CONNECTED_URL, {
   skipNegotiation : true,
   withCredentials : false,
   transport : signalR.HttpTransportType.WebSockets
 }).build();
 
 
+connectionA.start().then(async function () {
+    const grupo = "A";
+    if (grupo !== undefined && grupo !== null) {
+        await AddToGroupA(`${grupo}`)
+    }
+}).catch(function (e) {
+    console.log(e.toString());
+})
 
-//Disable send button until connection is established
+async function AddToGroupA(grupo) {
+    setTimeout(function () { }, 1500);
+    try {
+        await connectionA.invoke("AddToGroup", grupo);
+    }
+    catch (e) {
+        console.log(e.toString());
+    }
+}
 
-document.getElementById("sendButton").disabled = true;
-
-
-
-connection.on("ReceiveMessage", function (user, message) {
-
+connectionA.on("SendAll", function (message) {
+	var user = "teste";
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
     var encodedMsg = user + " says " + msg;
-
     var li = document.createElement("li");
-
     li.textContent = encodedMsg;
+    document.getElementById("menssagens2").appendChild(li);
 
-    document.getElementById("messagesList").appendChild(li);
+});
+
+connectionA.on("SendGroup", function (message) {
+	// var user = group;
+    var user = "teste";
+    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    var encodedMsg = user + " says " + msg;
+    var li = document.createElement("li");
+    li.textContent = encodedMsg;
+    document.getElementById("menssagens2").appendChild(li);
+
+});
+
+connectionA.on("SendUser", function (user, message) {
+	// var user = "teste";
+    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    var encodedMsg = user + " says " + msg;
+    var li = document.createElement("li");
+    li.textContent = encodedMsg;
+    document.getElementById("menssagens2").appendChild(li);
 
 });
 
 
 
-connection.start().then(function () {
+///Conections to Group B
 
-    document.getElementById("sendButton").disabled = false;
+var connectionB = new signalR.HubConnectionBuilder()
+ .withUrl(CONNECTED_URL, {
+  skipNegotiation : true,
+  withCredentials : false,
+  transport : signalR.HttpTransportType.WebSockets
+}).build();
 
-}).catch(function (err) {
 
-    return console.error(err.toString());
+connectionB.start().then(async function () {
+    const grupo = "B";
+    if (grupo !== undefined && grupo !== null) {
+        await AddToGroupB(`${grupo}`)
+    }
+}).catch(function (e) {
+    console.log(e.toString());
+})
+
+async function AddToGroupB(grupo) {
+    setTimeout(function () { }, 1500);
+    try {
+        await connectionB.invoke("AddToGroup", grupo);
+    }
+    catch (e) {
+        console.log(e.toString());
+    }
+}
+
+connectionB.on("SendAll", function (message) {
+	var user = "teste";
+    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    var encodedMsg = user + " says " + msg;
+    var li = document.createElement("li");
+    li.textContent = encodedMsg;
+    document.getElementById("menssagens3").appendChild(li);
 
 });
 
+connectionB.on("SendGroup", function (message) {
+	// var user = group;
+    var user = "teste";
+    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    var encodedMsg = user + " says " + msg;
+    var li = document.createElement("li");
+    li.textContent = encodedMsg;
+    document.getElementById("menssagens3").appendChild(li);
 
+});
 
-document.getElementById("sendButton").addEventListener("click", function (event) {
+connectionB.on("SendUser", function (user, message) {
+	// var user = "teste";
+    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    var encodedMsg = user + " says " + msg;
+    var li = document.createElement("li");
+    li.textContent = encodedMsg;
+    document.getElementById("menssagens3").appendChild(li);
 
-    var user = document.getElementById("userInput").value;
+});
 
-    var message = document.getElementById("messageInput").value;
+// document.getElementById("sendButton").addEventListener("click", function (event) {
 
-    connection.invoke("SendMessage", user, message).catch(function (err) {
+//     var user = document.getElementById("userInput").value;
 
-        return console.error(err.toString());
+//     var message = document.getElementById("messageInput").value;
 
-    });
+//     connectionAll.invoke("SendMessage", user, message).catch(function (err) {
 
-    event.preventDefault();
+//         return console.error(err.toString());
 
-});	 	
+//     });
+
+//     event.preventDefault();
+
+// });	 	
 
 </script>
 </html>
